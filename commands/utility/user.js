@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { cooldown } = require('./ping');
 
 module.exports = {
+	cooldown: 5,
 	data: new SlashCommandBuilder()
 		.setName('user')
 		.setDescription('Provides information about the user.'),
