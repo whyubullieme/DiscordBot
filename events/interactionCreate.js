@@ -3,6 +3,7 @@ const { execute } = require('./ready');
 
 module.exports = {
     name: Events.InteractionCreate,
+    //Handling Slash Commands
     async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;
 	
