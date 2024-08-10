@@ -28,10 +28,14 @@ module.exports = {
         if (timestamps.has(interaction.user.id)) {
             const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
 
-            if (now < expirationTime) {
-                const expiredTimestamp = Math.round(expirationTime / 1_000);
-                return interaction.reply({ content: 'Please wait, you are on a cooldown for \'${command.data.name\'. You can use it again <t:${expiredTimestamp}:R>.', ephemeral: true});
-            }
+            // Localization example
+            const locales = {
+                pl: `Proszę czekać, jesteś na cooldownie dla '${command.data.name}'. Możesz użyć tej komendy ponownie <t:${expiredTimestamp}:R>.`,
+                de: `Bitte warte, du bist auf einem Cooldown für '${command.data.name}'. Du kannst es wieder verwenden <t:${expiredTimestamp}:R>.`,
+                // Add more languages...
+            };
+
+            const response = locales[interaction.locale] ?? `Please wait, you are on a cooldown for '${command.data.name}'. You can use it again <t:${expiredTimestamp}:R>.`;
         }
 
         timestamps.set(interaction.user.id, now);
